@@ -8,3 +8,4 @@ CREATE TABLE IF NOT EXISTS memo (
 );
 
 CREATE UNIQUE INDEX n_unique ON memo (n);
+CREATE INDEX val_idx ON memo (val);

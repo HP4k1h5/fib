@@ -35,7 +35,9 @@ func handleRequests() {
 	router.HandleFunc("/fib/{n}", handleFib)
 	router.HandleFunc("/memoized/{val}", handleMemoized)
 	router.HandleFunc("/memoized", handleClearMemoized).Methods("DELETE")
-	log.Fatal(http.ListenAndServe(":7357", router))
+	port := ":7357"
+	fmt.Printf("api running on port %s\n", port)
+	log.Fatal(http.ListenAndServe(port, router))
 }
 
 func handleFib(w http.ResponseWriter, r *http.Request) {
@@ -94,7 +96,7 @@ func handleMemoized(w http.ResponseWriter, r *http.Request) {
 	for rows.Next() {
 		err := rows.Scan(&count)
 		if err != nil {
-			errMsg := fmt.Sprintf(" :: couldn't retrieve count for %d", val, err)
+			errMsg := fmt.Sprintf(" :: couldn't retrieve count for %d", val)
 			http.Error(w, err.Error()+errMsg, http.StatusInternalServerError)
 			return
 		}
