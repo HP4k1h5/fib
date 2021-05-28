@@ -23,7 +23,7 @@ func main() {
 
 func connectPG() {
 	var err error
-	conn, err = pgx.Connect(context.Background(), "postgresql://hp4k1h5@localhost:5432/fib")
+	conn, err = pgx.Connect(context.Background(), "postgresql://localhost:5432/fib")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "unable to connect %v\n", err)
 		os.Exit(1)
